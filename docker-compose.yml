@@ -2,15 +2,13 @@ version: '3.8'
 
 services:
   web:
-    build:
-      context: .
+    build: .
     container_name: django-app
-    command: python /todo/manage.py runserver 0.0.0.0:8000
+    command: [ "python", "manage.py", "runserver", "0.0.0.0:8000"]
     volumes:
-      - ./todo:/todo
+      - .:/app
     ports:
       - "8000:8000"
-    restart: always
     depends_on:
       - db
     environment:
@@ -19,6 +17,7 @@ services:
       - DJANGO_DB_USER=root
       - DJANGO_DB_PASSWORD=password
       - DJANGO_SECRET_KEY=supersecretkey
+    restart: always
 
   db:
     image: mysql:8
@@ -26,9 +25,8 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     environment:
-      - DJANGO_DB_HOST=db
-      - DJANGO_DB_NAME=mydatabase
-      - DJANGO_DB_USER=root
-      - DJANGO_DB_PASSWORD=password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mydatabase
+
 volumes:
   db_data:

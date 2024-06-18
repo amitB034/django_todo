@@ -1,12 +1,18 @@
+# ベースイメージ
 FROM python:3.11
 
-WORKDIR /todo
+# 作業ディレクトリの設定
+WORKDIR /app
 
-COPY requirements.txt /todo/
+# 依存関係のコピーとインストール
+COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ./todo /todo
+# アプリケーションコードのコピー
+COPY . /app/
 
+# ポート公開
 EXPOSE 8000
 
-CMD ["python", "/todo/manage.py", "runserver", "0.0.0.0:8000"]
+# デフォルトのコマンド
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
