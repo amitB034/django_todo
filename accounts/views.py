@@ -7,7 +7,7 @@ from .forms import SignUpForm, LoginFrom
 
 class SignUpView(CreateView):
     form_class = SignUpForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('accounts:login')
     template_name = 'signup.html'
 
 
@@ -16,4 +16,4 @@ class LoginView(LoginView):
     template_name = "login.html"
 
 class LogoutView(LogoutView):
-    success_url = reverse_lazy("todo_app:home")
+    success_url = reverse_lazy('todo_app:home')
