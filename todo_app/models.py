@@ -1,10 +1,11 @@
 from django.db import models
-
+from django.utils import timezone
 
 class Tasks(models.Model):
     task_title = models.CharField(max_length=64)
     task_due = models.IntegerField()
     is_finished = models.BooleanField()
+    created_at = models.DateTimeField('作成日', default=timezone.now)
     
     def __str__(self):
         return self.task_title

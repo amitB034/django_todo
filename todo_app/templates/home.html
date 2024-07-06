@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
+{% extends 'base.html'%}
+{% load static %}
+
+{% block contents %}
+<div class="mt-6">
+    {% if user.is_authenticated %}
     <h1>
         Hello World6
     </h1>
-    
-</body>
-</html>
+
+    {% else %}
+    <h1>ようこそtodoアプリへ!</h1>
+    <p>現在はログアウトしています</p>
+    {% endif %}
+</div>
+
+{% endblock %}

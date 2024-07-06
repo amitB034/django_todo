@@ -4,6 +4,6 @@ from django.views.generic import TemplateView, CreateView
 from django.http import HttpResponse
 
 def homepage(request):
-    print(123)
+    print("l")
 
     return render(request, 'home.html')
