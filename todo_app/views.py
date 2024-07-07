@@ -1,9 +1,31 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, ListView
 from django.http import HttpResponse
 
-def homepage(request):
-    print("l")
+from .models import Tasks
+from .form import TaskCreationForm
 
-    return render(request, 'home.html')
+# def homepage(request):
+#     return render(request, 'home.html')
+
+class HomeView(ListView):
+    template_name = 'home.html'
+    context_object_name = 'tasks'
+    
+    def get_queryset(self):
+        queryset = Tasks.objects.all().order_by('-created_at')
+        return queryset
+    
+class TaskCreateView(CreateView):
+    model = Tasks
+    form_class = TaskCreationForm
+    template_name = 'create_task.html'
+    success_url = reverse_lazy('todo_app:home')
+
+    def form_valid(self, form):
+        pd = form.save(commit=False)
+        pd.user = self.request.user
+        pd.save()
+        return super().form_valid(form)
+    

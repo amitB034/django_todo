@@ -4,9 +4,20 @@
 {% block contents %}
 <div class="mt-6">
     {% if user.is_authenticated %}
-    <h1>
-        Hello World6
-    </h1>
+    <div>
+        やるべきことリスト！！
+    </div>
+
+    {% if task %}
+    <div>
+        {% for task in tasks%}
+        {% endfor %}
+    </div>
+    {% else%}
+    <div>
+        タスクはありません。
+    </div>
+    {% endif %}
 
     {% else %}
     <h1>ようこそtodoアプリへ!</h1>
