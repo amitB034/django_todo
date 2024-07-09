@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, ListView
+from django.views.generic import TemplateView, CreateView, ListView, DeleteView
+from django.shortcuts import HttpResponseRedirect
 from django.http import HttpResponse
 
 from .models import Tasks
@@ -29,3 +30,14 @@ class TaskCreateView(CreateView):
         pd.save()
         return super().form_valid(form)
     
+class TaskDeleteView(DeleteView):
+    model = Tasks
+    template_name = 'delete.html'
+    success_url = reverse_lazy('todo_app:home')
+
+    def get(self, request, *args, **kwargs):
+        # オブジェクトを取得して削除
+        self.object = self.get_object()
+        self.object.delete()
+
+        return HttpResponseRedirect(self.get_success_url())

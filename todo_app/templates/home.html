@@ -4,20 +4,26 @@
 {% block contents %}
 <div class="mt-6">
     {% if user.is_authenticated %}
-    <div>
-        やるべきことリスト！！
+    <div class="text-3xl">
+        やるべきことリスト!!
     </div>
     {% if tasks %}
-    <div class="mt-4">
+    <div class="mt-10">
         {% for task in tasks%}
-        <div class="mt-4 flex ">
-            <div>
-                {{ task.task_title }}
+        <div class="mt-4 ">
+            <div class="flex justify-between">
+                <div class="text-2xl">
+                    {{ task.task_title }}
+                </div>
+                <a href = '{% url "todo_app:delete" task.id %}' class="bg-red-600 p-1 text-white">削除する</a>
             </div>
-            <div class="ml-2">
-                期限：　{{ task.task_due }}
+            
+            <div class="flex text-xl">
+                <div class="ml-2">
+                    期限：　{{ task.task_due }}
+                </div>
+                <input type="checkbox" class="ml-2">
             </div>
-            <input type="checkbox" class="ml-2">
         </div>
         {% endfor %}
     </div>
