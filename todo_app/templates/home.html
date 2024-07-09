@@ -7,10 +7,18 @@
     <div>
         やるべきことリスト！！
     </div>
-
-    {% if task %}
-    <div>
+    {% if tasks %}
+    <div class="mt-4">
         {% for task in tasks%}
+        <div class="mt-4 flex ">
+            <div>
+                {{ task.task_title }}
+            </div>
+            <div class="ml-2">
+                期限：　{{ task.task_due }}
+            </div>
+            <input type="checkbox" class="ml-2">
+        </div>
         {% endfor %}
     </div>
     {% else%}
