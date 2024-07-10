@@ -1,42 +1,53 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block contents %}
-<div class="mt-6">
-    {% if user.is_authenticated %}
-    <div class="text-3xl">
-        やるべきことリスト!!
-    </div>
-    {% if tasks %}
-    <div class="mt-10">
-        {% for task in tasks%}
-        <div class="mt-4 ">
-            <div class="flex justify-between">
-                <div class="text-2xl">
-                    {{ task.task_title }}
-                </div>
-                <a href = '{% url "todo_app:delete" task.id %}' class="bg-red-600 p-1 text-white">削除する</a>
-            </div>
-            
-            <div class="flex text-xl">
-                <div class="ml-2">
-                    期限：　{{ task.task_due }}
-                </div>
-                <input type="checkbox" class="ml-2">
-            </div>
+<main class="flex flex-col justify-center items-center w-30">
+    <div class="mt-6">
+        {% if user.is_authenticated %}
+        <div class="text-3xl">
+            やるべきことリスト!!
         </div>
-        {% endfor %}
+        {% if tasks %}
+        <div class="mt-10">
+            {% for task in tasks %}
+            <div class="mt-4 ">
+                <div class="flex justify-between">
+                    <div class="text-2xl">
+                        {{ task.task_title }}
+                    </div>
+                    <a href = '{% url "todo_app:delete" task.id %}' class="bg-red-600 p-1 text-white" onclick="return alertFunc();">削除する</a>
+                </div>
+                <script>
+                    function alertFunc() {
+                        var del = confirm("本当に削除しますか？");
+                        if (del == true) {
+                            return true;
+                        } else {
+                            location.href = '{% url "todo_app:home" %}';
+                            return false;
+                        }
+                    }
+                </script>
+                <div class="flex text-xl">
+                    <div class="ml-2 ">
+                        期限：　{{ task.task_due }}
+                    </div>
+                    <input type="checkbox" class="ml-2">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'todo_app:create' %}" id="plus_btn" class="mt-20">＋</a>
+        {% else %}
+        <div>
+            タスクはありません。
+        </div>
+        {% endif %}
+        {% else %}
+        <h1>ようこそtodoアプリへ!</h1>
+        <p>現在はログアウトしています</p>
+        {% endif %}
     </div>
-    {% else%}
-    <div>
-        タスクはありません。
-    </div>
-    {% endif %}
-
-    {% else %}
-    <h1>ようこそtodoアプリへ!</h1>
-    <p>現在はログアウトしています</p>
-    {% endif %}
-</div>
-
+</main>
 {% endblock %}
