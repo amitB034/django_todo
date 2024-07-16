@@ -15,7 +15,7 @@ class HomeView(ListView):
     context_object_name = 'tasks'
     
     def get_queryset(self):
-        queryset = Tasks.objects.all().order_by('-created_at')
+        queryset = Tasks.objects.filter(is_finished=False).order_by('-created_at')
         return queryset
     
 class TaskCreateView(CreateView):
@@ -41,3 +41,11 @@ class TaskDeleteView(DeleteView):
         self.object.delete()
 
         return HttpResponseRedirect(self.get_success_url())
+    
+class Task_doneView(ListView):
+    template_name = 'task_done.html'
+    context_object_name = 'done'
+    
+    def get_queryset(self):
+        queryset = Tasks.objects.filter(is_finished=True)
+        return queryset

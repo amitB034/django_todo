@@ -3,18 +3,21 @@
 
 
 {% block contents %}
-<div class="text-3xl">
+<div class="flex flex-col justify-center items-center w-30">
+    <div class="text-3xl">
     タスク作成
-</div>
-<form method="post">
+    </div>
+    <form method="post">
     {% csrf_token %}
-    <div>内容を入力して下さい:
+        <div>内容を入力して下さい:
         {{ form.task_title }}
-    </div>
-    <div>期限を入力して下さい:
+        </div>
+        <div>期限を入力して下さい:
         {{ form.task_due }}
-    </div>
-    <button type="submit" class="" >決定</button>
-</form>
+        </div>
+        <button type="submit" class="" >決定</button>
+    </form>
+</div>
+
 
 {% endblock %}
