@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, ListView, DeleteView
+from django.views.generic import TemplateView, CreateView, ListView, DeleteView, UpdateView
 from django.shortcuts import HttpResponseRedirect
 from django.http import HttpResponse
 
@@ -33,7 +33,7 @@ class TaskCreateView(CreateView):
 class TaskDeleteView(DeleteView):
     model = Tasks
     template_name = 'delete.html'
-    success_url = reverse_lazy('todo_app:home')
+    success_url = reverse_lazy('todo_app:task_done')
 
     def get(self, request, *args, **kwargs):
         # オブジェクトを取得して削除
@@ -42,10 +42,24 @@ class TaskDeleteView(DeleteView):
 
         return HttpResponseRedirect(self.get_success_url())
     
-class Task_doneView(ListView):
-    template_name = 'task_done.html'
-    context_object_name = 'done'
+class MarkDoneView(UpdateView):
+    model = Tasks
+    fields = ['is_finished']
+    template_name = 'mark_done.html'
+    success_url = reverse_lazy('todo_app:home')
+
+    def post(self, request, *args, **kwargs):
+        task = self.get_object()
+        if 'is_finished' in request.POST:
+            task.is_finished = True
+            task.save()
+        return HttpResponseRedirect(self.success_url)
     
+
+class TaskDoneView(ListView):
+    template_name = 'task_done.html'
+    context_object_name = 'tasks'
     def get_queryset(self):
         queryset = Tasks.objects.filter(is_finished=True)
+        print(queryset)
         return queryset
