@@ -17,13 +17,13 @@
                         {{ task.task_title }}
                     </div>
                     <!-- <a href = '{% url "todo_app:delete" task.id %}' class="bg-orange-600 p-1 text-white" onclick="return alertFunc();">タスク完了</a> -->
-                    <form method="post" action="{% url 'todo_app:mark_done' task.id %}">
+                    <form method="post" action="{% url 'todo_app:mark_done' task.id %}" onsubmit="return validateForm(this);">
                         {% csrf_token %}
-                        <input type="checkbox" name="is_finished" value="falese">
-                        <button type="submit" onclick="return alertFunc();" class="bg-orange-600 p-1 text-white">タスク完了</button>
+                        <input type="checkbox" name="is_finished" value="falese" id="is_finished_{{ task.id }}">
+                        <button type="submit"  class="bg-orange-600 p-1 text-white">タスク完了</button>
                     </form>
                 </div>
-                <script>
+                <!-- <script>
                     function alertFunc() {
                         var del = confirm("本当に削除しますか？");
                         if (del == true) {
@@ -33,7 +33,17 @@
                             return false;
                         }
                     }
-                </script>
+                </script> -->
+                <script>
+                    function validateForm(form) {
+                        var checkbox = form.querySelector('input[name="is_finished"]');
+                        if (!checkbox.checked) {
+                            alert("チェックボックスを入力してください");
+                            return false;
+                        }
+                        // return confirm("本当に削除しますか？");
+                    }
+                    </script>
                 <div class="flex text-xl">
                     <div class="ml-2 ">
                         期限：　{{ task.task_due }}

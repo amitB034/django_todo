@@ -17,7 +17,6 @@
                 <!-- <a href = '{% url "todo_app:delete" task.id %}' class="bg-orange-600 p-1 text-white" onclick="return alertFunc();">タスク完了</a> -->
                 <form method="post" action="{% url 'todo_app:delete' task.id %}">
                     {% csrf_token %}
-                    <input type="checkbox" name="is_finished" value="falese">
                     <button type="submit" onclick="return alertFunc();" class="bg-red-600 p-1 text-white">削除</button>
                 </form>
             </div>
@@ -26,9 +25,9 @@
                     var del = confirm("本当に削除しますか？");
                     if (del == true) {
                         return true;
-                    } else {
-                        location.href = '{% url "todo_app:task_done" %}';
-                        return false;
+                    // } else {
+                    //     location.href = '{% url "todo_app:task_done" %}';
+                    //     return false;
                     }
                 }
             </script>
