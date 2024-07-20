@@ -42,19 +42,23 @@ class TaskDeleteView(DeleteView):
 
         return HttpResponseRedirect(self.get_success_url())
     
-class MarkDoneView(UpdateView):
+class MarkChangeView(UpdateView):
     model = Tasks
     fields = ['is_finished']
-    template_name = 'mark_done.html'
+    template_name = 'mark_ch.html'
     success_url = reverse_lazy('todo_app:home')
 
     def post(self, request, *args, **kwargs):
+        # task = self.get_object()
+        # if 'is_finished' in request.POST:
+        #     task.is_finished = True
+        #     task.save()
         task = self.get_object()
+        print(task)
         if 'is_finished' in request.POST:
-            task.is_finished = True
+            task.is_finished = request.POST['is_finished']
             task.save()
         return HttpResponseRedirect(self.success_url)
-    
 
 class TaskDoneView(ListView):
     template_name = 'task_done.html'
