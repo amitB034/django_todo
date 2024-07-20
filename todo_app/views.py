@@ -15,8 +15,11 @@ class HomeView(ListView):
     context_object_name = 'tasks'
     
     def get_queryset(self):
-        queryset = Tasks.objects.filter(is_finished=False).order_by('-created_at')
-        return queryset
+        user = self.request.user
+        if user.is_authenticated:
+            return Tasks.objects.filter(user=user, is_finished=False).order_by('-created_at')
+        else:
+            return Tasks.objects.none()
     
 class TaskCreateView(CreateView):
     model = Tasks
@@ -63,7 +66,10 @@ class MarkChangeView(UpdateView):
 class TaskDoneView(ListView):
     template_name = 'task_done.html'
     context_object_name = 'tasks'
+
     def get_queryset(self):
-        queryset = Tasks.objects.filter(is_finished=True)
-        print(queryset)
-        return queryset
+        user = self.request.user
+        if user.is_authenticated:
+            return Tasks.objects.filter(user=user, is_finished=True)
+        else:
+            return Tasks.objects.none()
