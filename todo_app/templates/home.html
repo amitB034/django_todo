@@ -17,9 +17,9 @@
                         {{ task.task_title }}
                     </div>
                     <!-- <a href = '{% url "todo_app:delete" task.id %}' class="bg-orange-600 p-1 text-white" onclick="return alertFunc();">タスク完了</a> -->
-                    <form method="post" action="{% url 'todo_app:mark_done' task.id %}" onsubmit="return validateForm(this);">
+                    <form method="post" action="{% url 'todo_app:mark_ch' task.id %}" onsubmit="return validateForm(this);">
                         {% csrf_token %}
-                        <input type="checkbox" name="is_finished" value="falese" id="is_finished_{{ task.id }}">
+                        <input type="checkbox" name="is_finished" value="True" id="is_finished_{{ task.id }}">
                         <button type="submit"  class="bg-orange-600 p-1 text-white">タスク完了</button>
                     </form>
                 </div>
