@@ -58,12 +58,17 @@
         </div>
         {% endif %}
         {% else %}
-        <h1>ようこそtodoアプリへ!</h1>
-        <p>現在はログアウトしています</p>
+        <div class="flex flex-col text-center">
+            <p class="text-3xl">ようこそtodoアプリへ!</p>
+            <p class="mt-10">現在はログアウトしています</p>
+        </div>
+        
         {% endif %}
     </div>
 </div>
+{% if user.is_authenticated %}
 <div class="fixed">
     <a href="{% url 'todo_app:create' %}" id="plus_btn" >＋</a>
 </div>
+{% endif %}
 {% endblock %}
