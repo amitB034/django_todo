@@ -7,4 +7,5 @@ class TaskCreationForm(forms.ModelForm):
         fields = ("task_title", "task_due")
         widgets = {
             'task_due': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'reminder_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
