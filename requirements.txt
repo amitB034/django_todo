@@ -1,2 +1,5 @@
 django>=4.0
 mysqlclient
+celery
+redis
+django_celery_beat

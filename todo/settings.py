@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'todo_app',
     'accounts',
-    # 'django_celery_beat',
+    'django_celery_beat',
     ]
 
 
@@ -128,3 +128,7 @@ AUTH_USER_MODEL = 'accounts.User'
 
 LOGIN_REDIRECT_URL = "todo_app:home"
 LOGOUT_REDIRECT_URL = "todo_app:home"
+
+CELERY_BROKER_URL = 'redis://redis:6379'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'django-cache'
