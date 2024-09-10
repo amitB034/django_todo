@@ -13,8 +13,8 @@ class Tasks(models.Model):
 
     def save(self, *args, **kwargs):
         # リマインダー日時を期限の1日前に設定
-        if self.due_date and not self.reminder_date:
-            self.reminder_date = self.due_date - timezone.timedelta(days=1)
+        if self.task_due and not self.reminder_date:
+            self.reminder_date = self.task_due - timezone.timedelta(days=1)
         super().save(*args, **kwargs)
 
     def __str__(self):
