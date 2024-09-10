@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<header>
+    <nav class="p-4 bg-emerald-500 ">
+        <a class="text-white text-2xl italic" aria-current="page">todo</a>
+    </nav>
+</header>
+<body class="">
+    <h1>Sign up</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            {{ form.username }}
+        </div>
+        <div>
+            {{ form.password1 }}
+            {{ form.password2 }}
+        </div>
+        {{ from.errors }}
+        <button type="submit">決定</button>
+    </form>
+</body>
+</html>
