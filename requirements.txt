@@ -1,2 +1,5 @@
 django>=4.0
 mysqlclient
+django-environ
+gunicorn==20.0.4
+uvicorn==0.15.0
