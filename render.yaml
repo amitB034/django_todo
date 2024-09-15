@@ -7,7 +7,7 @@ services:
     plan: free
     branch: main
     healthCheckPath: /
-    dokerfilePath: ./Dockerfile
+    dockerfilePath: ./Dockerfile
     # buildCommand: "./build.sh"
     # startCommand: "gunicorn config.wsgi:application --log-file -"
     envVars:
@@ -21,7 +21,7 @@ services:
         value: 4
   - type: db
     name: testdb
-    databeseName: testdb
+    databaseName: testdb
     user: mysite
     region: singapore
     plan: free
