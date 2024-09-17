@@ -14,5 +14,5 @@ COPY . /app/
 # ポート公開
 EXPOSE 8000
 
-# デフォルトのコマンド
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# デフォルトのコマンドをgunicornでアプリケーションを起動
+CMD ["gunicorn", "todo.wsgi:application", "--bind", "0.0.0.0:8000"]

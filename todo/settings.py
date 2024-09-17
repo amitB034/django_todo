@@ -2,6 +2,7 @@
 from pathlib import Path
 import os
 # import environ
+# from decouple import config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,8 +23,8 @@ SECRET_KEY = 'django-insecure-(2e_s97x9b$rtv6yhni3ffm91*3t_ov)92hj(d)6k$yf)+kl(m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django_todo.onrender.com']
-
+ALLOWED_HOSTS = ['*']
+#django_todo.onrender.com
 
 # Application definition
 
