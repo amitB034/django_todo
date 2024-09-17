@@ -1,7 +1,8 @@
 
 from pathlib import Path
 import os
-from django.urls import reverse_lazy
+# import environ
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -11,12 +12,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
+# env = environ.Env()
+# env.read_env(os.path.join(BASE_DIR, '.env'))
+
+# SECRET_KEY = env('SECRET_KEY')
 SECRET_KEY = 'django-insecure-(2e_s97x9b$rtv6yhni3ffm91*3t_ov)92hj(d)6k$yf)+kl(m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['django_todo.onrender.com']
 
 
 # Application definition
@@ -40,6 +46,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'todo.urls'

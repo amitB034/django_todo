@@ -1,0 +1,27 @@
+
+services:
+  - type: web
+    name: test
+    env: python
+    region: singapore
+    plan: free
+    branch: main
+    healthCheckPath: /
+    dockerfilePath: ./Dockerfile
+    # buildCommand: "./build.sh"
+    # startCommand: "gunicorn todo.wsgi:application --log-file -"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mysite
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
+  - type: db
+    name: testdb
+    databaseName: testdb
+    user: mysite
+    region: singapore
+    plan: free
