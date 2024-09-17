@@ -8,9 +8,13 @@ WORKDIR /app
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
+
+
 # アプリケーションコードのコピー
 COPY . /app/
 
+RUN python manage.py makemigrations
+RUN python manage.py migrate
 # ポート公開
 EXPOSE 8000
 

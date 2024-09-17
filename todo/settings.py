@@ -80,18 +80,37 @@ WSGI_APPLICATION = 'todo.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': os.getenv('DJANGO_DB_NAME'),
+#         'USER': os.getenv('DJANGO_DB_USER'),
+#         'PASSWORD': os.getenv('DJANGO_DB_PASSWORD'),
+#         'HOST': os.getenv('DJANGO_DB_HOST'),
+#         'PORT': '3306',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DJANGO_DB_NAME'),
-        'USER': os.getenv('DJANGO_DB_USER'),
-        'PASSWORD': os.getenv('DJANGO_DB_PASSWORD'),
-        'HOST': os.getenv('DJANGO_DB_HOST'),
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres.ehfytzvtvskkrimpfeyy',
+        'PASSWORD': 'TAS##no8739',
+        'HOST': 'aws-0-ap-northeast-1.pooler.supabase.com',
+        'PORT': '6543'
     }
 }
 
+
+
+
+
 # SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
