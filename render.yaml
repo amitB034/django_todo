@@ -9,7 +9,7 @@ services:
     healthCheckPath: /
     dockerfilePath: ./Dockerfile
     # buildCommand: "./build.sh"
-    # startCommand: "gunicorn config.wsgi:application --log-file -"
+    # startCommand: "gunicorn todo.wsgi:application --log-file -"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
