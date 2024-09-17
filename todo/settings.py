@@ -1,7 +1,7 @@
 
 from pathlib import Path
 import os
-# import environ
+import environ
 # from decouple import config
 
 
@@ -14,11 +14,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-# env = environ.Env()
-# env.read_env(os.path.join(BASE_DIR, '.env'))
+env = environ.Env()
+env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # SECRET_KEY = env('SECRET_KEY')
 SECRET_KEY = 'django-insecure-(2e_s97x9b$rtv6yhni3ffm91*3t_ov)92hj(d)6k$yf)+kl(m'
+
+# SECRET_KEY = 'cd3abc1bf0721197e14e78bf324dfd29'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
