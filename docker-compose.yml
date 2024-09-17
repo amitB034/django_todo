@@ -56,7 +56,7 @@ services:
   celery-beat:
     build: .
     container_name: celery-beat
-    command: celery -A config beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler --pidfile=
+    command: celery -A todo beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler --pidfile=
     volumes:
       - .:/app
     depends_on:
