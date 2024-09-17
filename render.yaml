@@ -8,8 +8,8 @@ services:
     branch: main
     healthCheckPath: /
     dockerfilePath: ./Dockerfile
-    # buildCommand: "./build.sh"
-    # startCommand: "gunicorn todo.wsgi:application --log-file -"
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn todo.wsgi:application --log-file -"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
