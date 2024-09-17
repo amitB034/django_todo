@@ -2,6 +2,7 @@
 from pathlib import Path
 import os
 import environ
+
 # from decouple import config
 
 
@@ -90,7 +91,7 @@ DATABASES = {
     }
 }
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+# SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
