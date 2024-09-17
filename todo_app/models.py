@@ -6,7 +6,7 @@ class Tasks(models.Model):
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     task_title = models.CharField(max_length=64)
-    task_due = models.DateTimeField(verbose_name='Due Date')
+    task_due = models.DateTimeField(verbose_name='Due Date',null=True)
     is_finished = models.BooleanField(default=False)
     created_at = models.DateTimeField('作成日', default=timezone.now)
     
